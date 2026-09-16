@@ -1,0 +1,30 @@
+from rest_framework import serializers
+from .models import Book
+
+
+class BookSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+    def validate_title(self, value):
+        if not value.strip():
+            raise serializers.ValidationError(
+                "Book title cannot be empty."
+            )
+        return value
+
+    def validate_author(self, value):
+        if not value.strip():
+            raise serializers.ValidationError(
+                "Author name cannot be empty."
+            )
+        return value
+
+    def validate_published_year(self, value):
+        if value < 1000 or value > 2100:
+            raise serializers.ValidationError(
+                "Enter a valid publication year."
+            )
+        return value

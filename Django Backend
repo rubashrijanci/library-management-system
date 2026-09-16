@@ -1,0 +1,11 @@
+mkdir library-management
+cd library-management
+
+python -m venv venv
+venv\Scripts\activate
+
+pip install django djangorestframework django-cors-headers
+
+django-admin startproject library_api backend
+cd backend
+python manage.py startapp books
